@@ -22,10 +22,10 @@ public class MySQKLiteHelper extends SQLiteOpenHelper {
             + " integer primary key autoincrement, " + COLUMN_COMMENT
             + " text not null);";
 
-    public MySQKLiteHelper(Context context) {
-        super(context, name, factory, version, errorHandler);
-
+    public MySQKLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
