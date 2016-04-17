@@ -23,17 +23,18 @@ public class MainActivity extends ListActivity {
         List<Comment> values = dataSource.getAllComments();
 
         ArrayAdapter<Comment> adapter = new ArrayAdapter<Comment>(this, android.R.layout.simple_list_item_1, values);
+        setListAdapter(adapter);
 
     }
 
     public void onClick(View v) {
         ArrayAdapter<Comment> adapter = (ArrayAdapter<Comment>) getListAdapter();
-        Comment comment = null;
+        Comment comment;
 
         switch (v.getId()) {
 
             case R.id.add:
-                String[] comments = { "Cool", "Very nice", "Hate it" };
+                String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
                 int nextInt = new Random().nextInt(3);
                 comment = dataSource.createComment(comments[nextInt]);
                 adapter.add(comment);

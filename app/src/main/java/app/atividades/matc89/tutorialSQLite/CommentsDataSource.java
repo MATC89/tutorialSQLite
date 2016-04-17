@@ -20,7 +20,8 @@ public class CommentsDataSource {
         MySQLiteHelper.COLUMN_COMMENT };
 
     public CommentsDataSource(Context context) {
-            dbHelper = new MySQLiteHelper(context);
+
+        dbHelper = new MySQLiteHelper(context);
     }
 
     public void open() throws SQLException {
@@ -28,6 +29,7 @@ public class CommentsDataSource {
     }
 
     public void close() {
+
         dbHelper.close();
     }
 
