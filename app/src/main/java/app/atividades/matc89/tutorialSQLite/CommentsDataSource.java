@@ -15,12 +15,12 @@ import java.util.List;
 public class CommentsDataSource {
 
     private SQLiteDatabase database;
-    private MySQKLiteHelper dbHelper;
-    private String[] allColumns = { MySQKLiteHelper.COLUMN_ID,
-        MySQKLiteHelper.COLUMN_COMMENT };
+    private MySQLiteHelper dbHelper;
+    private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
+        MySQLiteHelper.COLUMN_COMMENT };
 
     public CommentsDataSource(Context context) {
-        dbHelper = new MySQKLiteHelper(context);
+            dbHelper = new MySQLiteHelper(context);
     }
 
     public void open() throws SQLException {
@@ -33,9 +33,9 @@ public class CommentsDataSource {
 
     public Comment createComment(String comment) {
         ContentValues values = new ContentValues();
-        values.put(MySQKLiteHelper.COLUMN_COMMENT, comment);
-        long insertId = database.insert(MySQKLiteHelper.TABLE_COMMENTS, null, values);
-        Cursor cursor = database.query(MySQKLiteHelper.TABLE_COMMENTS, allColumns, MySQKLiteHelper.COLUMN_ID +
+        values.put(MySQLiteHelper.COLUMN_COMMENT, comment);
+        long insertId = database.insert(MySQLiteHelper.TABLE_COMMENTS, null, values);
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS, allColumns, MySQLiteHelper.COLUMN_ID +
         " = " + insertId, null, null, null, null);
         cursor.moveToFirst();
         Comment newComment = cursorToComment(cursor);
@@ -46,18 +46,18 @@ public class CommentsDataSource {
     public void deleteComment(Comment comment) {
         long id = comment.getId();
         System.out.println("Comment deleted with id: " + id);
-        database.delete(MySQKLiteHelper.TABLE_COMMENTS, MySQKLiteHelper.COLUMN_ID + " = " + id, null);
+        database.delete(MySQLiteHelper.TABLE_COMMENTS, MySQLiteHelper.COLUMN_ID + " = " + id, null);
     }
 
     public List<Comment> getAllComments() {
         List<Comment> comments = new ArrayList<Comment>();
 
-        Cursor cursor = database.query(MySQKLiteHelper.TABLE_COMMENTS, allColumns, null, null, null, null, null);
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS, allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Comment comment = cursorToComment(cursor);
-            comment.add(comment)
+            comments.add(comment);
             cursor.moveToNext();
         }
 

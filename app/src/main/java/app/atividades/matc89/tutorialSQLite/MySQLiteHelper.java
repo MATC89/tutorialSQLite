@@ -8,7 +8,7 @@ import android.util.Log;
 /**
  * Created by arleyprates on 4/16/16.
  */
-public class MySQKLiteHelper extends SQLiteOpenHelper {
+public class MySQLiteHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_COMMENTS = "comments";
     public static final String COLUMN_ID = "_id";
@@ -22,7 +22,7 @@ public class MySQKLiteHelper extends SQLiteOpenHelper {
             + " integer primary key autoincrement, " + COLUMN_COMMENT
             + " text not null);";
 
-    public MySQKLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public MySQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
@@ -34,7 +34,7 @@ public class MySQKLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(MySQKLiteHelper.class.getName(),
+        Log.w(MySQLiteHelper.class.getName(),
                 "Upgrading database from version " + oldVersion + " to "
                 + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMMENTS);

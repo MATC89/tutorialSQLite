@@ -29,11 +29,14 @@ public class MainActivity extends ListActivity {
     public void onClick(View v) {
         ArrayAdapter<Comment> adapter = (ArrayAdapter<Comment>) getListAdapter();
         Comment comment = null;
+
         switch (v.getId()) {
-            String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
-            int nextInt = new Random().nextInt(3);
-            comment = dataSource.createComment(comments[nextInt]);
-            adapter.add(comment);
+
+            case R.id.add:
+                String[] comments = { "Cool", "Very nice", "Hate it" };
+                int nextInt = new Random().nextInt(3);
+                comment = dataSource.createComment(comments[nextInt]);
+                adapter.add(comment);
             break;
 
             case R.id.delete:
